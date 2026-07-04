@@ -29,8 +29,8 @@ export const signup = async (req,res)=>{
     res.cookie("token",token,{
         httpOnly:true,
         maxAge:7*24*60*60*1000,
-        sameSite:"strict",
-        secure:false
+        sameSite:"None",
+        secure:true
     })
 
     return res.status(201).json(user)
@@ -44,7 +44,7 @@ export const signin = async (req, res) => {
     try {
         const { email, password } = req.body
 
-        // check if user exists
+       
         const user = await User.findOne({ email })
 
         if (!user) {
@@ -53,7 +53,7 @@ export const signin = async (req, res) => {
             })
         }
 
-        // compare password
+       
         const isMatch = await bcrypt.compare(password, user.password)
 
         if (!isMatch) {
@@ -62,15 +62,15 @@ export const signin = async (req, res) => {
             })
         }
 
-        // generate token
+       
         const token = await genToken(user._id)
 
-        // set cookie
+      
         res.cookie("token", token, {
             httpOnly: true,
             maxAge: 7 * 24 * 60 * 60 * 1000,
-            sameSite: "strict",
-            secure: false
+           sameSite:"None",
+        secure:true
         })
 
         return res.status(200).json(user)
@@ -85,10 +85,10 @@ export const signin = async (req, res) => {
 
 export const logout = async (req, res) => {
     try {
-        // clear token cookie
+        
         res.cookie("token", "", {
             httpOnly: true,
-            expires: new Date(0),   // immediately expire cookie
+            expires: new Date(0),   
             sameSite: "strict",
             secure: false
         })
