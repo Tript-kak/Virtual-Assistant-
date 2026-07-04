@@ -3,8 +3,7 @@ const geminiResponse = async (command,assistantName,userName) => {
     try{
         const apiUrl = process.env.GEMINI_URL;
 
-        console.log("apiUrl =", apiUrl);
-console.log("process.env.GEMINI_URL =", process.env.GEMINI_URL);
+
 
         const prompt = `You are an intelligent AI Voice Assistant named ${assistantName}, created by ${userName}.
 
