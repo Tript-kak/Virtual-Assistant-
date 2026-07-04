@@ -7,7 +7,7 @@ import userRouter from "./routes/user.routes.js";
 import cors from "cors";
 import  geminiResponse  from "../backend/gemini.js";
 dotenv.config();
-
+console.log("Loaded GEMINI_URL:", process.env.GEMINI_URL);
 const app = express();
 
 app.use(cors({

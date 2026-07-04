@@ -8,17 +8,16 @@ import { userDataContext } from "../context/UserContext";
 function SignIn() {
   const navigate = useNavigate();
 
-  // context
+
   const { serverUrl, setUserData } = useContext(userDataContext);
 
-  // states
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
 
-  // signin function
+  
   const handleSignIn = async (e) => {
     e.preventDefault();
     setErr("");
@@ -38,12 +37,11 @@ function SignIn() {
 
       console.log(result);
 
-      // backend returns user directly
       setUserData(result.data);
 
       setLoading(false);
 
-      // navigate after login
+     
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -57,10 +55,10 @@ function SignIn() {
       className="min-h-screen bg-cover bg-center flex items-center justify-center px-4 relative"
       style={{ backgroundImage: `url(${bg})` }}
     >
-      {/* Dark overlay */}
+   
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
 
-      {/* Login Card */}
+    
       <div
         className="relative z-10 w-full max-w-md
         bg-white/10 backdrop-blur-xl
@@ -68,7 +66,7 @@ function SignIn() {
         rounded-3xl shadow-2xl p-8
         shadow-[0_0_40px_rgba(34,211,238,0.2)]"
       >
-        {/* Heading */}
+     
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-white">
             Welcome Back
@@ -78,17 +76,17 @@ function SignIn() {
           </p>
         </div>
 
-        {/* Error */}
+      
         {err && (
           <p className="text-red-400 text-sm text-center mb-4">
             {err}
           </p>
         )}
 
-        {/* Form */}
+       
         <form onSubmit={handleSignIn} className="space-y-5">
 
-          {/* Email */}
+          
           <div>
             <label className="text-gray-200 text-sm block mb-2">
               Email
@@ -106,7 +104,7 @@ function SignIn() {
             />
           </div>
 
-          {/* Password */}
+          
           <div>
             <label className="text-gray-200 text-sm block mb-2">
               Password
@@ -138,17 +136,8 @@ function SignIn() {
             </div>
           </div>
 
-          {/* Forgot Password */}
-          <div className="flex justify-end">
-            <span
-              onClick={() => navigate("/forgot-password")}
-              className="text-sm text-cyan-400 cursor-pointer hover:underline"
-            >
-              Forgot Password?
-            </span>
-          </div>
-
-          {/* Sign In Button */}
+         
+          
           <button
             type="submit"
             disabled={loading}
@@ -161,7 +150,7 @@ function SignIn() {
           </button>
         </form>
 
-        {/* Sign Up Link */}
+       
         <p className="text-center text-gray-300 text-sm mt-6">
           Don’t have an account?{" "}
           <span

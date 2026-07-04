@@ -3,6 +3,9 @@ const geminiResponse = async (command,assistantName,userName) => {
     try{
         const apiUrl = process.env.GEMINI_URL;
 
+        console.log("apiUrl =", apiUrl);
+console.log("process.env.GEMINI_URL =", process.env.GEMINI_URL);
+
         const prompt = `You are an intelligent AI Voice Assistant named ${assistantName}, created by ${userName}.
 
             You are not Google. You will now behave like a voice-enabled assistant.
@@ -301,9 +304,18 @@ now your userInput- ${command}
         })
 
         return result.data.candidates[0].content.parts[0].text;
-    }catch(error){
-        console.log(error)
+    }catch (error) {
+    console.log("Gemini Error:");
+
+    if (error.response) {
+        console.log(error.response.status);
+        console.log(error.response.data);
+    } else {
+        console.log(error.message);
     }
+
+    throw error;
+}
 }
 
 export default geminiResponse;

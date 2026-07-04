@@ -30,15 +30,29 @@ function UserContext({ children }) {
     }
   };
 
-  const getGeminiResponse = async(command)=>{
-    try{
-      const result = await axios.post(`${serverUrl}/api/user/asktoassistant`,{command},{withCredentials:true})
-      return result.data
+  const getGeminiResponse = async (command) => {
+  try {
     
-    }catch(error){
+    const result = await axios.post(
+      `${serverUrl}/api/user/asktoassistant`,
+      { command },
+      { withCredentials: true }
+    );
 
+    return result.data;
+  } catch (error) {
+    console.log("Axios Error:", error);
+
+    if (error.response) {
+      console.log("Status:", error.response.status);
+      console.log("Data:", error.response.data);
+    } else {
+      console.log("Message:", error.message);
     }
+
+    return null;
   }
+};
 
   useEffect(() => {
     handleCurrentUser();

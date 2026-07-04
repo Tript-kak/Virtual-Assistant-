@@ -8,10 +8,10 @@ import { userDataContext } from "../context/UserContext";
 function SignUp() {
   const navigate = useNavigate();
 
-  // context
+  
   const { serverUrl, setUserData } = useContext(userDataContext);
 
-  // states
+  
   const [showPassword, setShowPassword] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,7 +19,7 @@ function SignUp() {
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
 
-  // signup function
+  
   const handleSignUp = async (e) => {
     e.preventDefault();
     setErr("");
@@ -40,14 +40,14 @@ function SignUp() {
 
       console.log(result);
 
-      // backend returns user directly
+     
       setUserData(result.data);
 
       setLoading(false);
 
-      // after signup
+      
       navigate("/signin");
-      // if auto login then use navigate("/")
+ 
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -60,17 +60,17 @@ function SignUp() {
       className="min-h-screen bg-cover bg-center flex items-center justify-center px-4 relative"
       style={{ backgroundImage: `url(${bg})` }}
     >
-      {/* Dark Overlay */}
+     
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
 
-      {/* Signup Card */}
+      
       <div
         className="relative z-10 w-full max-w-md 
         bg-white/10 backdrop-blur-xl 
         border border-white/20 
         rounded-3xl shadow-2xl p-8"
       >
-        {/* Heading */}
+        
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-white">
             Create Account
@@ -80,17 +80,17 @@ function SignUp() {
           </p>
         </div>
 
-        {/* Error */}
+      
         {err && (
           <p className="text-red-400 text-sm text-center mb-4">
             {err}
           </p>
         )}
 
-        {/* Form */}
+     
         <form onSubmit={handleSignUp} className="space-y-5">
 
-          {/* Name */}
+         
           <div>
             <label className="text-gray-200 text-sm block mb-2">
               Full Name
@@ -108,7 +108,7 @@ function SignUp() {
             />
           </div>
 
-          {/* Email */}
+        
           <div>
             <label className="text-gray-200 text-sm block mb-2">
               Email
@@ -126,7 +126,7 @@ function SignUp() {
             />
           </div>
 
-          {/* Password */}
+          
           <div>
             <label className="text-gray-200 text-sm block mb-2">
               Password
@@ -158,7 +158,7 @@ function SignUp() {
             </div>
           </div>
 
-          {/* Button */}
+      
           <button
             type="submit"
             disabled={loading}
@@ -171,7 +171,7 @@ function SignUp() {
           </button>
         </form>
 
-        {/* Login */}
+        
         <p className="text-center text-gray-300 text-sm mt-6">
           Already have an account?{" "}
           <span
