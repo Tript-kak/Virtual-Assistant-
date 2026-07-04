@@ -51,7 +51,7 @@ export const askToAssistant = async(req,res)=>{
         const userName = user.name
        
         const assistantName = user.assistantName
-        const result = await gemniResponse(command,userName,assistantName)
+        const result = await gemniResponse(command,assistantName,userName)
 
         const jsonMatch = result.match(/{[\s\S]*}/);
 
